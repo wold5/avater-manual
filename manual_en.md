@@ -1,4 +1,4 @@
-# Annotation Viewer and Tools for (PocketBook) E-Readers (AVATeR) [v0.10]
+# Annotation Viewer and Tools for (PocketBook) E-Readers (AVATeR) [v0.12.1]
 
 Interactive annotation viewer/exporter for **PocketBook e-readers**, with additional tools.
 
@@ -492,6 +492,13 @@ Given it's general background (i.e. competing Markdown standards, especially w/r
 Known issues:
 - a single dollar sign in the booktitle (rare), may be seen as starting a math formula, breaking the table export. Ghostwriter ignores this, but Apostrophe inserts a <span> tag breaking the table.
 
+#### Windows: VirtualCD USB detection compatibility (0.12.1 and lower)
+
+On Windows, the VirtualCD application (www.virtualcd-online.com) appears to modify drive letter assignment, which conflicts with detection of the drive letter. This situation is being investigated. Note v0.12.1 improves the situation somewhat, fixing a bug that made local mirrors unavailable.
+
+A temporary work-around is as follows (this assumes the drives are unused): configure your VirtualCD drive(s) to use drive letter(s) at least two 'steps' higher than the current ones (i.e. E: becomes G:), thereby leaving earlier drive letters available for Windows for mounting your USB e-reader. This settings can be modified as follows:
+
+![](fix-virtualcd.png)
 
 #### Minor issues
 
