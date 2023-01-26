@@ -24,13 +24,11 @@ Some highlights
 ## Requirements
 
 ### Supported E-Reader devices
-PocketBook readers, with recent 6.x firmware.  
-
-Older firmware versions (5.x) are likely only partially supported - we are open to feedback. 
+- PocketBook e-readers, with recent 6.x firmware, and late 5.x firmware (please report any compatibility issues)
+- Vivlio e-readers (rebranded PocketBook e-readers)
 
 ### Windows
-+ Windows 8/10+ (64-bit Intel/AMD/compatible only currently)
-+ Windows 7 may be supported, XP likely not
++ Windows 7/8/10/11+ (64-bit Intel/AMD compatible only)
 
 ### Linux
 +  requires udev (kernel support), Qt5, LibZip libraries
@@ -40,7 +38,7 @@ Older firmware versions (5.x) are likely only partially supported - we are open 
 ### Performance notes
 - Loading annotations **directly** from a device takes longer due to their slower storage mediums: the 'local mirror' feature improves this. See also [performance improvements](#improvePerformance).
 
-- In general, performance is expected to be good to acceptable even on older hardware. Further optimizations are available under "Settings > Annotation Viewer".
+- performance is expected to be good to acceptable even on older hardware. Some optimizations are available under "Settings > Annotation Viewer".
 
 
 
@@ -481,16 +479,16 @@ With v0.9.7, program speed was improved markedly. If hard-pressed, these changes
 - use a local database mirror (reduces disk access time)
 - use a filter preset of 6 months or less (reduces annotation count). The setting is retained between restarts.
 
-#### Linux: no or limited debug messages
-First, AVATeR only outputs debug messages when requested to do so from the CLI or GUI settings. Second, many distributions have blocked debug messages from being output, due to excessive default(!) debug messaging by applications. 
-
-If AVATeR debug output is enabled, and it detects the OS has blocked debug messages, it will attempt to restore debug output. Alternatively, on Linux you can issue ```export QT_LOGGING_RULES="*.debug=true;qt.*.debug=false``` from the shell/terminal, to force debug messages to show. See also: https://stackoverflow.com/questions/30583577/qt-qdebug-not-working-with-qconsoleapplication-or-qapplication
-
 #### Markdown export issues (v0.10+)
 Given it's general background (i.e. competing Markdown standards, especially w/r to tables; various extensions and Markdown converters), the Markdown export is likely to experience problems down the road. 
 
 Known issues:
 - a single dollar sign in the booktitle (rare), may be seen as starting a math formula, breaking the table export. Ghostwriter ignores this, but Apostrophe inserts a <span> tag breaking the table.
+
+#### Linux: no or limited debug messages
+First, AVATeR only outputs debug messages when requested to do so from the CLI or GUI settings. Second, many distributions have blocked debug messages from being output, due to excessive default(!) debug messaging by applications. 
+
+If AVATeR debug output is enabled, and it detects the OS has blocked debug messages, it will attempt to restore debug output. Alternatively, on Linux you can issue ```export QT_LOGGING_RULES="*.debug=true;qt.*.debug=false``` from the shell/terminal, to force debug messages to show. See also: https://stackoverflow.com/questions/30583577/qt-qdebug-not-working-with-qconsoleapplication-or-qapplication
 
 #### Windows: VirtualCD USB detection compatibility (0.12.1 and lower)
 
