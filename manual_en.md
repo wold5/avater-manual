@@ -1,4 +1,4 @@
-# Annotation Viewer and Tools for (PocketBook) E-Readers (AVATeR) [v0.12.1]
+# Annotation Viewer and Tools for (PocketBook) E-Readers (AVATeR) [v0.13]
 
 Interactive annotation viewer/exporter for **PocketBook e-readers**, with additional tools.
 
@@ -28,7 +28,8 @@ Some highlights
 - Vivlio e-readers (rebranded PocketBook e-readers)
 
 ### Windows
-+ Windows 7/8/10/11+ (64-bit Intel/AMD compatible only)
++ Windows 10/11 (64-bit Intel/AMD compatible only currently)
++ Version 0.13.x and older support Windows 7,8. If you need a working version, please contact us.
 
 ### Linux
 +  requires udev (kernel support), Qt5, LibZip libraries
@@ -181,14 +182,14 @@ Removes the device from the program. This does **not unmount** the device.
 If the device has a '*local db mirror*', the device entry is kept, is labeled as disconnected, and any device references are purged. Ejecting 'local mirrors' does nothing.
 
 ### Device selector
-Select one of multiple devices or *locally mirrored devices*. 
+Select one of multiple devices or *locally mirrored (LM) devices*.
+
+##### Device state icon
+Mounted devices are displayed in dark grey, unmounted in light grey. Local Mirror entries are indicated by a circle on the left; e-readers by a square on the right, with an optional SD-card symbol in the middle. 
 
 ##### Switching and loading annotations
 
 Switching between devices loads the annotations for the selected device (unless disabled under *settings > Annotationsviewer*). Previously loaded annotations are kept in memory until the device is removed from the program (for *local DB mirrors* this will not occur).
-
-##### Connected devices
-Connected devices are indicated by addition of an e-reader icon, and a "connected" text-label. Entries without these are so-called local mirrors.
 
 ##### Custom device label
 
@@ -247,6 +248,11 @@ No special remarks apply.
 Back-up any other directories and files on the device, **excluding** a) the previously discussed types and b) the /system/ folder. The program will not remember these being checked to reduce device access. 
 
 *Note: e-Reader transfer speeds average at about 1-2 minutes per GB*
+
+##### Warnings
+If a detected main or card device is unmounted when opening the dialog, a warning is shown. You may continue at your own discretion.
+
+If a device is disconnected or unmounted between the moment of opening and clicking "OK", the backup will be canceled. Rescan your devices to detect newly mounted devices.
 
 ##### Compression
 As e-Books and dictionary files tend to be already (maximally) compressed, these are 'stored' in the .zip archive, saving (processing) time.
@@ -492,7 +498,7 @@ If AVATeR debug output is enabled, and it detects the OS has blocked debug messa
 
 #### Windows: VirtualCD USB detection compatibility (0.12.1 and lower)
 
-On Windows, the VirtualCD application (www.virtualcd-online.com) appears to modify drive letter assignment, which conflicts with detection of the drive letter. This situation is being investigated. Note v0.12.1 improves the situation somewhat, fixing a bug that made local mirrors unavailable.
+On Windows, the VirtualCD application (www.virtualcd-online.com) appears to modify drive letter assignment, which conflicts with detection of the drive letter. This situation is being investigated. Note v0.12.1 fixed a bug that made the same local mirror unavailable. v0.13 should show the device as unmounted, with the possible exception of VirtualCD having mounted a device on the same drive location.
 
 A temporary work-around is as follows (this assumes the drives are unused): configure your VirtualCD drive(s) to use drive letter(s) at least two 'steps' higher than the current ones (i.e. E: becomes G:), thereby leaving earlier drive letters available for Windows for mounting your USB e-reader. This settings can be modified as follows:
 
