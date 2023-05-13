@@ -148,7 +148,7 @@ Manually check for a new program version. If an update is found, a prompt offers
 Opens the settings dialog. Settings are undocumented, but hovering over labels/options will show 'tooltip' pop-ups with information.
 
 
-### Annotation Sources menu (0.10+)
+### Profiles/Annotation Sources menu (0.10+)
 
 Any found and supported annotation sources (i.e. PB profiles) are shown here. Selecting one will clear the viewer and will load any of that source its annotations.
 
@@ -612,13 +612,7 @@ See changelog.txt
 
 Originally this was a set of tools for PB readers. The annotation HTML exporter was made interactive, and made the UI centerpiece.
 
-***
-
-### Design philosophy
-
-We mainly provide a basic set of tools, focused on being generic and adaptable to new situations. 
-
-Content can be best managed by the e-reading device or specialized programs.
+We aim to provide a basic set of tools, focused on being generic and adaptable to new situations. Content can be best managed by the e-reading device or specialized programs.
 
 The current implementation integrates several components: an underlying reader management layer (using standard library functions, and Qt SQL functions), a Qt based mainwindow, with an integrated annotation viewer, and several tools. Future versions may see these components being split out.
 
@@ -650,6 +644,6 @@ Please see the website for more information.
 ***
 
 ### Copyright / License
-Copyright (C) 2021-2022+ Authors (See "help > about" or authors.txt)
+Copyright (C) 2021-2023+ Authors (See "help > about" or authors.txt)
 
 This software is provided 'as-is', without any express or implied warranty. In no event will the authors be held liable for any damages arising from the use of this software.
