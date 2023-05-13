@@ -165,7 +165,10 @@ For selected annotations, this outputs the 'raw' SQL data to the debug log. This
 _Note: The export is currently hardcoded to use the local mirror when mirroring is enabled, else the device's databases._
 
 ##### Open debug logfile
-Accessible if debug messages are logged to a logfile. To change, see settings > advanced, or consult the CLI "--help" information.
+Accessible if debug messages are logged to a logfile.
+
+Debug logging can be enabled from the settings menu or the CLI. Consult the FAQ (near the end of this document) for more details.
+
 
 <a id="devicetoolbar"></a>
 
@@ -517,6 +520,20 @@ For the time being, book metadata is read from the books.db file in order to kee
 ### FAQ
 
 #### Reader device is not recognized or shown
+### Enabling debug logging
+During operation, the program can report its status and any encountered errors at pre-defined points during operation. These messages are typically written to a text file, or 'logged', hence the term 'logfile' (or 'debug' file).
+
+When solving problems (so-called 'debugging'), the logfile is an important diagnostic tool for the developers to find where problems occur. Often 'logging' is disabled by default, to reduce resource usage. Hence, you'll likely first need to enable logging using the program settings. This is quite easy and discussed next.
+
+##### Enabling logging
+To enable logging: 
+- open the menu option "Main > Settings": here open the last tab "Advanced": next to "Log debug messages", select "Log to file". The filepath shown below the selector is the logfile location. Restart the program to enable logging (as prompted by the pop-up).
+- advanced users may enable this from the CLI/shell (consult the "--help" information).
+
+##### Viewing the logfile
+After enabling logging to file, and restarting, recent AVATeR versions will show a new "debug" menu. Open it, and select the option "open debug logfile" to view the logfile. Save it to a new place, and send the file to the developers. 
+
+
 AVATeR expects the OS (or you) to have mounted any supported e-readers, making the files accessible. Otherwise, the program will (silently) ignore the e-reader. (Future versions may indicate unmounted devices.)
 
 Also ensure your device is supported by AVATeR. Newly introduced devices may use a new (USB) vendor ID, which must first be added to the program.
