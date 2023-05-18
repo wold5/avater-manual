@@ -2,6 +2,8 @@
 
 Interactive annotation viewer/exporter for **PocketBook e-readers**, with additional tools.
 
+![](./avater-screenshot-0.13-1.png)
+
 We do:
 
 +  **interactive annotations reading, searching and exporting**  directly from the e-reader
