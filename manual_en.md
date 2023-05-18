@@ -489,7 +489,7 @@ Steps you may try in addition are listed below. If the problem persists, enable 
 - restart the computer at least once
 
 
-#### Columns are compressed or text is invisible
+### Columns are compressed or text is invisible
 This seems to occurs when saving column-sizes for an empty table; it should normally not occur.
 
 To fix: right-click the annotation viewer header row (with "Author", "Title", etc.) and select "Reset to Default".
@@ -500,10 +500,10 @@ In case that fails:
 2. Locate the avater.conf file (see start of the logfile)
 3. Remove any (at least two) lines from avater.conf labeled "table_columnsettings": one below the "[viewer]" line, and the other below the "[uploader]" entry.
 
-#### Persistent crash directly on start-up (<v0.10)
+### Persistent crash directly on start-up (<v0.10)
 Pre v0.10, a rare crash could be caused when switching between Qt5/6 versions. As of v0.10, column settings for either Qt version are stored separately. For older version, fix this by removing both  "table_columnsettings" entries from the preference file: see the previous FAQ item for this.
 
-#### Is the device data(base) safe?
+### Is the device data(base) safe?
 This program's **read-only functions** should not be able to cause damage. AVATeR doesn't continuously access DBs, importing data instead, at the cost of some memory.
 
 Functions that **modify** the device's DBs do carry an inherent risk: these are the "merge/fix annotations" and "restore reading progress". To minimize risks, consider the following points:
@@ -573,7 +573,7 @@ For the time being, book metadata is read from the books.db file in order to kee
 
 ***
 
-#### Appendix: PocketBook recovery details
+### Appendix: PocketBook recovery details
 
 Some topics will come up repeatedly. 
 
