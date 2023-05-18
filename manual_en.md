@@ -27,17 +27,7 @@ Some highlights
 
 ## Requirements
 
-### Supported E-Reader devices
-- PocketBook e-readers, with recent 6.x firmware, and late 5.x firmware (please report any compatibility issues)
-- Vivlio e-readers (rebranded PocketBook e-readers)
-
-### Windows
-+ Windows 10/11 (64-bit Intel/AMD compatible only currently)
-+ Version 0.13.x and older support Windows 7,8. If you need a working version, please contact us.
-
-### Linux
-+  requires udev (kernel support), Qt5, LibZip libraries
-+  typical <100MB memory
+See the project webpage.
 
 
 ### Performance notes
@@ -627,20 +617,16 @@ Consider the sources of complications when replacing databases:
 
 ***
 
-### History/changelog/roadmap
-
-See changelog.txt
-
-Originally this was a set of tools for PB readers. The annotation HTML exporter was made interactive, and made the UI centerpiece.
-
-We aim to provide a basic set of tools, focused on being generic and adaptable to new situations. Content can be best managed by the e-reading device or specialized programs.
-
-The current implementation integrates several components: an underlying reader management layer (using standard library functions, and Qt SQL functions), a Qt based mainwindow, with an integrated annotation viewer, and several tools. Future versions may see these components being split out.
-
-***
+## And more...
 
 ### Donation/purchasing
 At the moment, you are encouraged to donate if you are able to do so. This may change in future versions, if there are valid reasons (support load, etc.).
+
+***
+
+### Support / Bugs / Feature requests / etc
+
+Please see the website for more information.
 
 ***
 
@@ -656,11 +642,6 @@ Configuration files may contain a device's serial, once a 'devicelabel' or 'loca
 - **Program Backup files**
 These are stored locally on your device. Largely self-explanatory: depending on the device, the archived files may include references to document title/author(s), genres, highlighted texts and user notes, if any.
 
-***
-
-### Support / Bugs / Feature requests / etc
-
-Please see the website for more information.
 
 ***
 
