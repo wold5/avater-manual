@@ -1,4 +1,6 @@
-# Annotation Viewer and Tools for (PocketBook) E-Readers (AVATeR) [v0.13]
+
+
+[Version 0.13.0]
 
 Interactive annotation viewer/exporter for **PocketBook e-readers**, with additional tools.
 
