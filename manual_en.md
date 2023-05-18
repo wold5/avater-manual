@@ -454,7 +454,68 @@ Opens a file dialog for selecting an _export file_, and exports selected annotat
 _Notes, PocketBooks: Highlights edited on PB devices using that device's Notes app, may lose their page and highlight location data._
 
 
-## Other Topics
+
+## FAQ
+
+### Enabling debug logging
+During operation, the program can report its status and any encountered errors at pre-defined points during operation. These messages are typically written to a text file, or 'logged', hence the term 'logfile' (or 'debug' file).
+
+When solving problems (so-called 'debugging'), the logfile is an important diagnostic tool for the developers to find where problems occur. Often 'logging' is disabled by default, to reduce resource usage. Hence, you'll likely first need to enable logging using the program settings. This is quite easy and discussed next.
+
+##### Enabling logging
+To enable logging: 
+- open the menu option "Main > Settings": here open the last tab "Advanced": next to "Log debug messages", select "Log to file". The filepath shown below the selector is the logfile location. Restart the program to enable logging (as prompted by the pop-up).
+- advanced users may enable this from the CLI/shell (consult the "--help" information).
+
+##### Viewing the logfile
+After enabling logging to file, and restarting, recent AVATeR versions will show a new "debug" menu. Open it, and select the option "open debug logfile" to view the logfile. Save it to a new place, and send the file to the developers. 
+
+
+### Reader device is not recognized or shown
+AVATeR expects the OS (or you) to have mounted any supported e-readers, making the files accessible. Otherwise, the program will (silently) ignore the e-reader. (Future versions may indicate unmounted devices.)
+
+Also ensure your device is supported by AVATeR. Newly introduced devices may use a new (USB) vendor ID, which must first be added to the program.
+
+*Note: some Linux distributions will show filesystems, but only mount them upon user (UI) action/access.*
+
+Steps you may try in addition are listed below. If the problem persists, enable debugging, inspect the program logfile and/or contact the author(s).
+
+- (v0.9.8 and older): on slow/older machines, increase the "mountDelay" time under "settings > advanced".
+- try reconnecting the device (avoid quick successive re-connection)
+- turn the device off (hold power-button) and on
+- for Pocketbooks: disable wifi
+- try another USB port
+- try another USB cable
+- restart the computer at least once
+
+
+#### Columns are compressed or text is invisible
+This seems to occurs when saving column-sizes for an empty table; it should normally not occur.
+
+To fix: right-click the annotation viewer header row (with "Author", "Title", etc.) and select "Reset to Default".
+
+In case that fails:
+
+1. Stop the program, or else the 'faulty' entries will get saved again.
+2. Locate the avater.conf file (see start of the logfile)
+3. Remove any (at least two) lines from avater.conf labeled "table_columnsettings": one below the "[viewer]" line, and the other below the "[uploader]" entry.
+
+#### Persistent crash directly on start-up (<v0.10)
+Pre v0.10, a rare crash could be caused when switching between Qt5/6 versions. As of v0.10, column settings for either Qt version are stored separately. For older version, fix this by removing both  "table_columnsettings" entries from the preference file: see the previous FAQ item for this.
+
+#### Is the device data(base) safe?
+This program's **read-only functions** should not be able to cause damage. AVATeR doesn't continuously access DBs, importing data instead, at the cost of some memory.
+
+Functions that **modify** the device's DBs do carry an inherent risk: these are the "merge/fix annotations" and "restore reading progress". To minimize risks, consider the following points:
+
+1. Preferably make a DB backup before using these tools (as prompted).
+
+2. Ensure the device and USB cable are undisturbed during operations (with worn out USB ports even a nudge can cause a temporary disconnection). 
+
+Do note the SQLite database (DB) commonly used by (embedded appliances such as) e-readers is a robust DB format, widely used and well tested.
+
+Lastly, AVATeR is not exempt from programming mistakes and/or compatibility problems, such as database changes after firmware updates. Generally, such operations will fail early (and safely), and additional checks are in development. 
+
 
 ### Known Issues
 
@@ -499,7 +560,7 @@ On Windows, the VirtualCD application (www.virtualcd-online.com) appears to modi
 
 A temporary work-around is as follows (this assumes the drives are unused): configure your VirtualCD drive(s) to use drive letter(s) at least two 'steps' higher than the current ones (i.e. E: becomes G:), thereby leaving earlier drive letters available for Windows for mounting your USB e-reader. This settings can be modified as follows:
 
-![](fix-virtualcd.png)
+![](./fix-virtualcd.png)
 
 #### Minor issues
 
@@ -508,69 +569,6 @@ Mouse-scrolling annotations can show up in visual CPU monitors as a CPU spike; n
 
 - **Book metadata on PocketBooks**
 For the time being, book metadata is read from the books.db file in order to keep things simple. Note external apps that change metadata may only target the explorer.db, explaining any discrepancies. 
-
-***
-
-### FAQ
-
-#### Reader device is not recognized or shown
-### Enabling debug logging
-During operation, the program can report its status and any encountered errors at pre-defined points during operation. These messages are typically written to a text file, or 'logged', hence the term 'logfile' (or 'debug' file).
-
-When solving problems (so-called 'debugging'), the logfile is an important diagnostic tool for the developers to find where problems occur. Often 'logging' is disabled by default, to reduce resource usage. Hence, you'll likely first need to enable logging using the program settings. This is quite easy and discussed next.
-
-##### Enabling logging
-To enable logging: 
-- open the menu option "Main > Settings": here open the last tab "Advanced": next to "Log debug messages", select "Log to file". The filepath shown below the selector is the logfile location. Restart the program to enable logging (as prompted by the pop-up).
-- advanced users may enable this from the CLI/shell (consult the "--help" information).
-
-##### Viewing the logfile
-After enabling logging to file, and restarting, recent AVATeR versions will show a new "debug" menu. Open it, and select the option "open debug logfile" to view the logfile. Save it to a new place, and send the file to the developers. 
-
-
-AVATeR expects the OS (or you) to have mounted any supported e-readers, making the files accessible. Otherwise, the program will (silently) ignore the e-reader. (Future versions may indicate unmounted devices.)
-
-Also ensure your device is supported by AVATeR. Newly introduced devices may use a new (USB) vendor ID, which must first be added to the program.
-
-*Note: some Linux distributions will show filesystems, but only mount them upon user (UI) action/access.*
-
-Steps you may try in addition are listed below. If the problem persists, enable debugging, inspect the program logfile and/or contact the author(s).
-
-- (v0.9.8 and older): on slow/older machines, increase the "mountDelay" time under "settings > advanced".
-- try reconnecting the device (avoid quick successive re-connection)
-- turn the device off (hold power-button) and on
-- for Pocketbooks: disable wifi
-- try another USB port
-- try another USB cable
-- restart the computer at least once
-
-
-#### Columns are compressed or text is invisible
-This seems to occurs when saving column-sizes for an empty table; it should normally not occur.
-
-To fix: right-click the annotation viewer header row (with "Author", "Title", etc.) and select "Reset to Default".
-
-In case that fails:
-
-1. Stop the program, or else the 'faulty' entries will get saved again.
-2. Locate the avater.conf file (see start of the logfile)
-3. Remove any (at least two) lines from avater.conf labeled "table_columnsettings": one below the "[viewer]" line, and the other below the "[uploader]" entry.
-
-#### Persistent crash directly on start-up (<v0.10)
-Pre v0.10, a rare crash could be caused when switching between Qt5/6 versions. As of v0.10, column settings for either Qt version are stored separately. For older version, fix this by removing both  "table_columnsettings" entries from the preference file: see the previous FAQ item for this.
-
-#### Is the device data(base) safe?
-This program's **read-only functions** should not be able to cause damage. AVATeR doesn't continuously access DBs, importing data instead, at the cost of some memory.
-
-Functions that **modify** the device's DBs do carry an inherent risk: these are the "merge/fix annotations" and "restore reading progress". To minimize risks, consider the following points:
-
-1. Preferably make a DB backup before using these tools (as prompted).
-
-2. Ensure the device and USB cable are undisturbed during operations (with worn out USB ports even a nudge can cause a temporary disconnection). 
-
-Do note the SQLite database (DB) commonly used by (embedded appliances such as) e-readers is a robust DB format, widely used and well tested.
-
-Lastly, AVATeR is not exempt from programming mistakes and/or compatibility problems, such as database changes after firmware updates. Generally, such operations will fail early (and safely), and additional checks are in development. 
 
 
 ***
