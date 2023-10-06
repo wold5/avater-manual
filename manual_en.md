@@ -103,7 +103,7 @@ _Note: CLI debug settings take precedence over preference debug settings (see "s
 
 - relative paths are converted to absolute
 - both forward/backward slashes are accepted
-- data directory and it's content will be created *when* necessitated by user action.
+- data directory and its content will be created *when* necessitated by user action.
 
 
 ## Main menu
@@ -118,7 +118,7 @@ _Note: CLI debug settings take precedence over preference debug settings (see "s
 Scans system for new or removed devices. This includes:
 
 - USB devices
-- Local DB mirrors
+- Local Database mirrors
 
 Both USB devices, and local mirrors (0.9.8+) are removed if not found (removed from the program, not unmounted - for local mirrors no files are removed).
 
@@ -265,7 +265,7 @@ Ideally the end-user (you) would tests back-ups, which is not practical. The pro
 
 This tool checks both device and locally mirrored databases (DBs) for errors. It utilizes SQLite's ('official') "integrity_check" feature.
 
-Should any errors be indicated, click on "Show Details" for more information. Warnings regarding so-called 'WAL' files, or "database not found" are harmless; any other errors can indicate serious issues with the database or the device it's (internal) memory.   
+Should any errors be indicated, click on "Show Details" for more information. Warnings regarding so-called 'WAL' files, or "database not found" are harmless; any other errors can indicate serious issues with the database or the device its (internal) memory.
 Usually such errors are unrecoverable, but you may attempt to recover part or the whole DB using third party recovery tools (SQLite's CLI tool is a free option).
 
 *Note: 'WAL file' related errors may be ignored, and may not persist across checks. Errors relating to opening databases may occur when the device monitor is disabled (by user or a failure to start), and a device was disconnected.*
@@ -472,7 +472,7 @@ After enabling logging to file, and restarting, recent AVATeR versions will show
 
 
 ### Reader device is not recognized or shown
-AVATeR expects the OS (or you) to have mounted any supported e-readers, making the files accessible. Otherwise, the program will (silently) ignore the e-reader. (Future versions may indicate unmounted devices.)
+AVATeR expects the OS (or you) to have mounted any supported e-readers, making their files accessible. Otherwise, the program will (silently) ignore the e-reader. (Future versions may indicate unmounted devices.)
 
 Also ensure your device is supported by AVATeR. Newly introduced devices may use a new (USB) vendor ID, which must first be added to the program.
 
@@ -536,7 +536,7 @@ If you can help test this, please contact the author(s). For extra safety, first
 With v0.9.7, program speed was improved markedly. If hard-pressed, these changes may improve the situation:
 
 - Ensure the last (right-most) column is not stretched. If it is, right-click in the annotation viewer header, and select "reset columns".
-- increase the search delay to 1000ms or more (reduces interim searches)
+- increase the search delay to 1000ms or more (reduces interim searches). See "Settings > Annotation Viewer".
 - disable case-sensitive sorting (faster method)
 - prefer "sort on date" (default annotation order)
 - keep bookmarks hidden (reduces annotation count)
@@ -544,7 +544,7 @@ With v0.9.7, program speed was improved markedly. If hard-pressed, these changes
 - use a filter preset of 6 months or less (reduces annotation count). The setting is retained between restarts.
 
 #### Markdown export issues (v0.10+)
-Given it's general background (i.e. competing Markdown standards, especially w/r to tables; various extensions and Markdown converters), the Markdown export is likely to experience problems down the road. 
+Given its general background (i.e. competing Markdown standards, especially w/r to tables; extensions and converters), the Markdown exporter is likely to experience problems down the road. 
 
 Known issues:
 - a single dollar sign in the booktitle (rare), may be seen as starting a math formula, breaking the table export. Ghostwriter ignores this, but Apostrophe inserts a <span> tag breaking the table.
@@ -606,7 +606,7 @@ For PocketBooks, the main DBs of interest are:
 Consider the sources of complications when replacing databases:
 
 - **firmware updates**: may change the database layout between versions. A manufacturer may(!) account for this during access or updates, but cannot always do so.
-- **ebook file changes**: these change the file's 'hash', used as a identification help. Upon change, a book file will be perceived as a 'new' book, thus losing it's link to previously associated reading progress and annotation data. 
+- **ebook file changes**: these change the file's 'hash', used as a identification help. Upon change, a book file will be perceived as a 'new' book, thus losing its link to previously associated reading progress and annotation data. 
   
 	- Causes of file changes include: replacing the cover or internal (meta)data
 	- Some readers use the filename and filelocation to re-identify files, as neither are intrinsic to the file itself (and thus the hash). Changing memory cards (and its card ID) may complicate this
