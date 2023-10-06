@@ -1,6 +1,6 @@
 
 
-[Version 0.13.0]
+[Version 0.13.2]
 
 Interactive annotation viewer/exporter for **PocketBook e-readers**, with additional tools.
 
