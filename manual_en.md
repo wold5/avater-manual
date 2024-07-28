@@ -2,7 +2,7 @@
 
 [Version 0.13.2]
 
-Interactive annotation viewer/exporter for **PocketBook e-readers**, with additional tools.
+Interactive annotation viewer/exporter for **PocketBook, Kobo and Sony e-readers**, with additional tools.
 
 ![screenshot mainwindow](avater-screenshot-0.13-1.png)
 
@@ -136,24 +136,25 @@ If created, opens the 'data' directory using the OS' file browser. See [configur
 Manually check for a new program version. If an update is found, a prompt offers the choice of visiting the download page. Alternatively, you may enable/disable the automatic update check under settings.
 
 ##### Settings
-Opens the settings dialog. Settings are undocumented, but hovering over labels/options will show 'tooltip' pop-ups with information.
+Opens the settings dialog. Settings are currently undocumented, but hovering over labels/options will show 'tooltip' pop-ups with information.
 
 
 ### Profiles/Annotation Sources menu (0.10+)
 
-Any found and supported annotation sources (i.e. PB profiles) are shown here. Selecting one will clear the viewer and will load any of that source its annotations.
+Any found and supported annotation sources (i.e. PB profiles) are shown here. Selecting one will clear the viewer and will load that source its annotations (if present, else the viewer is empty).
 
 ### Help menu
 
 Offers various links and the about window, but version information.
 
 ### Debug menu (0.9.9+)
-If either debug mode is enabled, the debug menu is shown.
+If debug mode is enabled, the debug menu is shown. If compiled using Debug flags, additional tools are available.
 
-#### Log selected row SQL data (0.9.9+, experimental)
+#### Log selected row SQL data (0.9.9+, experimental PB only)
 For selected annotations, this outputs the 'raw' SQL data to the debug log. This can be used by the developers to solve certain problems.
 
 _Note: The export is currently hardcoded to use the local mirror when mirroring is enabled, else the device's databases._
+
 
 ##### Open debug logfile
 Accessible if debug messages are logged to a logfile.
