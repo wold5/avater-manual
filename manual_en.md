@@ -1,10 +1,10 @@
 
 
-[Version 0.13.2]
+[Version 0.16]
 
 Interactive annotation viewer/exporter for **PocketBook, Kobo and Sony e-readers**, with additional tools.
 
-![screenshot mainwindow](avater-screenshot-0.13-1.png)
+![screenshot mainwindow](avater-screenshot-0.16-1.png)
 
 We do:
 
@@ -102,6 +102,9 @@ _Note: CLI debug settings take precedence over preference debug settings (see "s
 - both forward/backward slashes are accepted
 - data directory and its content will be created *when* necessitated by user action.
 
+##### - style <name> (Qt GUI)
+
+Provided by Qt apps in generic: this argument allows defining the Qt window style used. `Fusion` is a safe choice. On misspelling a name, a list of available styles is offered.
 
 ## Main menu
 
@@ -595,6 +598,20 @@ On Windows, the VirtualCD application (www.virtualcd-online.com) appears to modi
 One work-around is to reassign the VirtualCD drive(s) letters to be outside the range where your e-reader is usually mounted. This settings can be modified as follows:
 
 ![screenshot of virtualcd settings fix](fix-virtualcd.png)
+
+#### Dark mode support, disabling
+v0.16 includes fixes for darkmode support, mainly targeting Windows 11. 
+
+For Linux, the situation is more complex and under investigation. There, the default Qt `Fusion theme could suffice, its pallette needing to be styled by either AVATeR or the OS. One workaround is using Qt themes like `Adwaita-Dark` and `kvantum`, but these don't always suffice, perhaps due to the OS configuration (hence YMMV).
+
+- You may force a Qt style when invoking AVATeR from the shell/CLI, by appending e.g. `-style Fusion`. With a non-existing name, a list of available styles is generated. Various scripts and environment variables exist as well.
+
+#### SVG drawing caching
+
+For display, image data (PNG, JPG) or vector based drawings (SVG) need to be converted to bitmaps. Especially with multiple complex drawings, that are repeatedly requested, delays and hick-ups can occur. Caching the converted bitmaps is one solution to this problem, which was implemented in v0.16.
+
+- Cache size is configurable under Settings > Advanced (Hover the mousecursor over the input field for more info). 
+- Note stored bitmaps can be large, being likely stored uncompressed and with higher (redundant) color depths by default, so be liberal when increasing the cache size (expect 1-2MB per object).
 
 #### Minor issues
 
