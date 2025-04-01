@@ -1,6 +1,5 @@
-
-
-[Version 0.16]
+# AVATER manual [version 0.18]
+[version 0.18]
 
 Interactive annotation viewer/exporter for **PocketBook, Kobo and Sony e-readers**, with additional tools.
 
@@ -124,6 +123,15 @@ Scans system for new or removed devices. This includes:
 
 Both USB devices, and local mirrors (0.9.8+) are removed if not found (removed from the program, not unmounted - for local mirrors no files are removed).
 
+<a name="add-device-using-localpath"></a>
+
+#### Add device using paths
+Add a device using a local path or directory, such as network mounted devices. The path is expected to be the root path, an offset is not yet supported.
+
+Available in two flavors: a full dialog, and a fast mode. The dialog offers additional options. This includes linking the reader to an existing LocalMirror, using its serial, to allow syncing databases. Check "remember paths" to remember the main/card path - the previously selected LM is not remembered to prevent user-error - it will be checked if these directories exist upon opening the dialog.
+
+The fast mode, and the dialog mode without an entered serial, will use a single-use random serial number to ID the device. Manual backups will then be placed in the "_localpath" folder in the datadir. __You may also use a consistent made-up serial for privacy reasons, but remember that the databases may still contain a serial ID.__
+
 ##### Eject all devices
 Removes all USB devices from the program - *but does not unmount* these from the OS.
 
@@ -134,19 +142,22 @@ Allows importing annotations from a backup archive, into a 'virtual' device. *Cu
 The provided name is used as the devicename in the device selector. You may afterwards also set a devicelabel, but it will _not_ be saved.
 -->
 
-##### Open datadir path
-If created, opens the 'data' directory using the OS' file browser. See [configuration files](#configurationfiles). Note: this directory is created when needed. 
-
 ##### Check for updates (optional)
 Manually check for a new program version. If an update is found, a prompt offers the choice of visiting the download page. Alternatively, you may enable/disable the automatic update check under settings.
 
-##### Settings
-Opens the settings dialog. Settings are currently undocumented, but hovering over labels/options will show 'tooltip' pop-ups with information.
+#### Settings menu
 
+##### Reset filtertext on device change
+Resets the annotation filters when changing devices. 
 
-### Profiles/Annotation Sources menu (0.10+)
+##### Open datadir path
+If created, opens the 'data' directory using the OS' file browser. See [configuration files](#configurationfiles). Note: this directory is created when needed. 
 
-Any found and supported annotation sources (i.e. PB profiles) are shown here. Selecting one will clear the viewer and will load that source its annotations (if present, else the viewer is empty).
+##### Open prefsdir path
+If created, opens the 'prefsdir' directory using the OS' file browser. See [configuration files](#configurationfiles).
+
+##### Settings (Linux/Windows)
+Opens the settings dialog. Settings are currently undocumented, but hovering over labels/options will show 'tooltip' pop-ups with information. On macOS this option may be moved to the 'avater' menu.
 
 ### Help menu
 
@@ -339,9 +350,13 @@ Beware that a device reset (which resets the device DBs) will be carried over in
 #### Add Devicelabel
 A user-added label shown next to the device name. 
 
+Devicelabels are stored for physical and LM devices; temporary 'localpath'-based devices will use a temporary label. 
 
-### Load annotations button (optional)
-Only visible when auto-loading annotations is disabled (see settings). If your device is slow, this may improve startup time.
+
+### Show annotations (0.17+)
+Show or hides the annotation viewer panel. On by default. If you choose not to use the annotations feature, this will speed up program startup considerably. Note closing purges all annotation models from memory.
+
+Note: previously (<=0.16) this button could be enabled from the settings dialog, and would load annotations on request. 
 
 ## Annotation Viewer
 
@@ -349,6 +364,12 @@ The viewer displays annotation (meta)data in multiple columns.
 
 ![Annotation Viewer](screenshot-annotationviewer.png)\
 
+
+### Sources menu (0.14+/0.10+)
+
+Any found and supported annotation sources (i.e. PB profiles) are shown here since v0.14 (previously in the menubar, since v0.10). 
+
+Selecting an annotation source will clear the viewer and will load that source its annotations. If not present/accessible, it will be disabled in the menu and the viewer is emptied.
 
 
 ##### Column visibility
@@ -370,6 +391,17 @@ The viewer context menu (right-click), offers short-cuts for filtering on that r
 
 - **Copy this cell** copies the pointed to (single) cell's content to the clipboard as raw text. For advanced export features, see the [exporting section](#exporting).
 
+- **Copy row Media to file**
+Exports the row's media to a file. Opens a destination directory selector. 
+
+- **Copy row Media to clipboard HTML (experimental)**
+Experimental export of the media to the clipboard, in HTML format. Support tends to be spotty: 
+
+	- HTML images (screenshots) are accepted by most applications, including MS Office, but few image editors
+	- SVG drawing support (embedded in HTML) is rarer, mainly LibreOffice and Thunderbird. 
+
+A future version will export bitmaps for increased compatibility, likely impacting image quality and size (foremost).
+
 - **Copy selected row(s)**: short-cut for copy to clipboard. Follows the GUI sorting mode; for advanced export features, see the [exporting section](#exporting).
 
 - **Selecting text segments** If wanting to select text segments within a highlight/note, double click that cell to access the text. (Note: rich text formatting is to be implemented)
@@ -383,10 +415,19 @@ The viewer context menu (right-click), offers short-cuts for filtering on that r
 
 Allows interactive searching. Text searches are slightly delayed - this duration can be changed under "settings > Annotation Viewer".
 
-+ "Filter": Filter annotations on date and page
-+ "Search author": plain text search
-+ "Search title": plain text search
++ "Filter": Filter annotations on date, page and type/flag (see below)
++ "Search author": Regular Expression search (v0.15+)
++ "Search title": Regular Expression search (v0.15+)
 + "Search highlights/notes": Regular Expression search, of both Highlight and Note texts
+
+##### Filter on annotation type/flag
+
+![Filter widget](screenshot-filter-widget.png)\
+
+The filter widget allows sorting on date, page and type/flag. 
+
+- Type details what kind of annotation is shown. The difference between media and drawings may be subjective.
+- Flags relate mainly to the 'deleted' status, and may not be supported by all vendors. Similarly, 'translations' are exclusive to PB e-readers. Due to the nature of the flag-based filtering, one option has always be selected, hence the default 'no flags' option.
 
 ##### Case sensitivity
 Case sensitivity can be toggled under the Viewer Tools menu (right-most button).
@@ -400,6 +441,9 @@ Currently implemented only for "Search highlights/notes" (but trivial to do so e
 - '|' represents an OR condition , i.e. "work|play" finds all entries with either "work" or "play" in them.
 
 *Note: This is still a basic feature. If you have a specific use-case, feel free to inform the authors.*
+
+##### Persistent filtering
+Applied filters persist whenever changing devices. Use the 'Settings' menu option to disable this. 
 
 <a id="sortmodes"></a>
 
@@ -449,6 +493,9 @@ Reloads only the (annotation) data, and prompts the viewer to update. *Normally 
 
 - **Reset Viewer:**
 Resets both the viewer model, and reloads annotations. *Normally not needed.*
+
+- **Reset Columns:**
+Resets the viewer columns to their defaults. Useful to fix a rare bug where the viewer column bar is hidden (Debian Buster, assumed fixed).
 
 <a id="exporting"></a>
 
@@ -514,10 +561,13 @@ Steps you may try in addition are listed below. If the problem persists, enable 
 - restart the computer at least once
 
 
+### The column bar is not shown 
+See suggestion below. Rare, occurring with older Qt versions (<v5.12) as used on Debian Buster.
+
 ### Columns are compressed or text is invisible
 This seems to occurs when saving column-sizes for an empty table; it should normally not occur.
 
-To fix: right-click the annotation viewer header row (with "Author", "Title", etc.) and select "Reset to Default".
+To fix: right-click the annotation viewer header row (with "Author", "Title", etc.) and select "Reset to Default" (or the viewer menu, since v0.17+).
 
 In case that fails:
 
@@ -543,6 +593,11 @@ Lastly, AVATeR is not exempt from programming mistakes and/or compatibility prob
 
 
 ### Known Issues
+
+#### Sony annotations are shortened
+Sony e-readers store only a brief summary of the annotation in their databases, referring to the content of the actual e-book file. This is efficient, but less so for archival purposes. 
+
+The intent is to first add the option to retrieve and show the full annotations, by accessing the files; future versions may rely on a central annotation repository.
 
 #### Missing page numbers
 Annotations from older PocketBook firmware versions, may miss page number information. The page column will then show "?". Alternatives are being considered.
