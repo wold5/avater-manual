@@ -200,7 +200,6 @@ You may add a custom label using "Device Tools > Set Devicelabel". For example t
 ### (Device) Tools
 Available tools may differ per device and vendor.
 
-***
 
 #### Device Information (0.13.2+)
 Shows information about:
@@ -255,7 +254,6 @@ Files stored in .zip files, such as backup archives, can be processed and -if su
 
 _Not implemented yet_. ACSM downloading is a planned feature. 
 
-***
 
 #### Manual Backup Device
 
@@ -289,7 +287,6 @@ Ideally the end-user (you) would tests back-ups, which is not practical. The pro
 
 *Note regarding data integrity: the .zip format's internal checksums can (only) indicate data corruption after storage or transmission. Depending on the value of your data, consider a good backup strategy, and hardware/software integrity features (ECC, ZFS, etc.).*
 
-***
 
 #### Check DB integrity
 
@@ -300,7 +297,6 @@ Usually such errors are unrecoverable, but you may attempt to recover part or th
 
 *Note: 'WAL file' related errors may be ignored, and may not persist across checks. Errors relating to opening databases may occur when the device monitor is disabled (by user or a failure to start), and a device was disconnected.*
 
-***
 
 #### Merge/Fix annotations on device
 This allows merging of bookmarks/annotations for similar e-books.
@@ -326,7 +322,6 @@ If you are sure the child items refer to the same book (see warnings), you may c
 
 - The PB database design tends towards adding or duplicating entries instead of modifying them (as is proper). However, to avoid excessive duplication, this tool modifies data in-place.
 
-***
 
 #### Local DB mirror
 Mirrors a device databases locally, for accessing annotations when a device is disconnected. It also provides a considerable speed-up compared to reading databases from the device.
@@ -340,12 +335,10 @@ Note: this is a basic local caching solution, that leverages existing device sup
 Beware that a device reset (which resets the device DBs) will be carried over into the local mirror, thus erasing any previously locally stored annotations. Should you want to reset a device, store a manual backup *before* resetting. This backup can be imported in the future to keep access to the annotations.
 
 
-***
 
 #### Add Devicelabel
 A user-added label shown next to the device name. 
 
-***
 
 ### Load annotations button (optional)
 Only visible when auto-loading annotations is disabled (see settings). If your device is slow, this may improve startup time.
@@ -630,7 +623,6 @@ Mouse-scrolling annotations can show up in visual CPU monitors as a CPU spike; n
 For the time being, book metadata is read from the books.db file in order to keep things simple. Note external apps that change metadata may only target the explorer.db, explaining any discrepancies. 
 
 
-***
 
 ### Appendix: PocketBook recovery details
 
@@ -672,20 +664,17 @@ Consider the sources of complications when replacing databases:
 	- Lastly, the filedate(s) are also not intrinsic to the file, but are sometimes used in the hash for (partial) identification.
 
 
-***
 
 ## And more...
 
 ### Donation/purchasing
 At the moment, you are encouraged to donate if you are able to do so. This may change in future versions, if there are valid reasons (support load, etc.).
 
-***
 
 ### Support / Bugs / Feature requests / etc
 
 Please see the website for more information.
 
-***
 
 ### Privacy
 
@@ -700,7 +689,6 @@ Configuration files may contain a device's serial, once a 'devicelabel' or 'loca
 These are stored locally on your device. Largely self-explanatory: depending on the device, the archived files may include references to document title/author(s), genres, highlighted texts and user notes, if any.
 
 
-***
 
 ### Copyright / License
 Copyright (C) 2021-2025+ Authors (See "help > about" or authors.txt)
